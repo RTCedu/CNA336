@@ -1,3 +1,6 @@
+# This script opens a file for reading. If it doesn't exist it creates the file and then opens it.
+# Zachary Rubin, zrubin@rtc.edu
+# CNA 336 Spring 2018
 import os
 
 rel_path = os.path.abspath(os.path.dirname(__file__))

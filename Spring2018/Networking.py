@@ -1,3 +1,7 @@
+# This code provides basic HTTP, web, and API requests
+# Zachary Rubin, zrubin@rtc.edu
+# CNA 336 Spring 2018
+
 import os
 import urllib.request
 hostname = "https://www.google.com"
