@@ -3,6 +3,9 @@
 # CNA 336 Spring 2018
 import sqlite3
 import time
+import os
+import urllib.request
+import json
 sqlite_file = "foo.db"
 conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
@@ -14,31 +17,22 @@ c.execute("CREATE TABLE IF NOT EXISTS Ratings(ID INT PRIMARY KEY AUTOINCREMENT, 
 # 2016-05-19
 counter = 0
 
-#for i in range(1, 210):
-#
-#    query = "http://www.ratemyprofessors.com/filter/professor/?department=&institution=California+State+University%2C+Northridge&page=" + str(
-#        i) + "&filter=teacherlastname_sort_s+asc&query=*%3A*&queryoption=TEACHER&queryBy=schoolId&sid=163"
-#
-#    try:
-#        page = requests.get(query)
-#        jsonpage = json.loads(page.content)
-#        professorlist = jsonpage['professors']
+query = "https://data.seattle.gov/api/views/cf52-s8er/rows.json?accessType=DOWNLOAD"
+jsonpage = 0
+try:
+    contents = urllib.request.urlopen(query)
+    response = contents.read()
+    jsonpage = json.loads(response)
 
-#        if len(professorlist) > 0:
-#            for prof in professorlist:
-#                if db.find_one({"tid": int(prof['tid'])}) is None:
-#                    db.insert(prof)
-#        print
-#        "page " + str(i) + " " + '\xF0\x9F\x98\x8F'
-#    except:
-#        pass
+except:
+    pass
+    time.sleep(1)
 
-#    time.sleep(1)
+#print(jsonpage)
+data = json.dumps(jsonpage['data'])
 
-c.execute("SELECT * FROM Ratings")
-rows = c.fetchall()
-for row in rows:
-    print(row)
+for x in data:
+    print(x)
 #conn.commit()
 
 

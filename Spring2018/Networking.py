@@ -21,7 +21,6 @@ query = str(input("Enter a query"))
 
 contents = urllib.request.urlopen(hostname_get+query)
 response = contents.read()
-#print (response)
 response_decoded_string = response.decode("utf-8")
 start_location = response_decoded_string.find("5-Year Average")
 end_location = response_decoded_string.find("10-Year Average")
