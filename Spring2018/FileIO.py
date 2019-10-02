@@ -3,17 +3,16 @@
 # CNA 336 Spring 2018
 import os
 
-rel_path = os.path.abspath(os.path.dirname(__file__))
-path = os.path.join(rel_path, "../")
+file_name = "test.txt"
 
 file = 0
 try:
-    file = open(path, "r")
+    file = open(file_name, "r")
     print (file.read())
 except FileNotFoundError:
     print("File not found, it will be created.")
-    file = open(path, "w")
+    file = open(file_name, "w")
     file.write("")
     file.close()
-file = open(path, "r")
+file = open(file_name, "r")
 print (file.read())
